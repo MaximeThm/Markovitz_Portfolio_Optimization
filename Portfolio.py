@@ -68,8 +68,6 @@ cons = ({'type':'eq', 'fun':check_sum})
 init_guess = np.full((1,len(stocklist)),1/len(stocklist))
 bounds = [[0,1]]*len(stocklist)
 
-print(type(bounds))
-
 opt_results = minimize(neg_sharpe, init_guess, method='SLSQP', bounds=bounds, constraints=cons)
 print(opt_results)
 

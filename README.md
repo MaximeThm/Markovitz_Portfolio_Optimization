@@ -28,4 +28,4 @@ And then, the programm provides you with a nice visualization of the efficient f
 
 ![Screenshot 2020-10-24 at 16 46 23](https://user-images.githubusercontent.com/35689674/97084800-b0bb7200-1619-11eb-8280-f1209b9f4822.png)
 
-Have fun with this programm ! Tweak arounds the parameters and message me if you find a really nice combination of assets ;)
+Have fun with this programm ! Tweak around the parameters and message me if you find a really nice combination of assets ;)

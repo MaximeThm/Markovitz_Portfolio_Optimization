@@ -6,14 +6,16 @@ import numpy as np
 from scipy.optimize import minimize
 import datetime
 
-yf.pdr_override()
-
-stocklist = ['TSLA','AMZN','AAPL']
-
+# List of tickers
+stocklist = ['TSLA','AAPL','AMZN']
+# Start and end date of the period under study
 end_date = datetime.date.today()
-start_date = end_date - datetime.timedelta(days=1000)
-unused = ['Open', 'High', 'Low', 'Close', 'Volume']
+start_date = end_date - datetime.timedelta(days=2520)
+# Number of portfolio visualized
+num_ports = 10000
 
+yf.pdr_override()
+unused = ['Open', 'High', 'Low', 'Close', 'Volume']
 stocks = pd.DataFrame()
 
 for i in range(0, len(stocklist)):
@@ -27,7 +29,6 @@ stocks.columns = [stocklist]
 
 log_ret = np.log(stocks/stocks.shift(1))
 
-num_ports = 1000
 all_weights = np.zeros((num_ports, len(stocks.columns)))
 ret_arr = np.zeros(num_ports)
 vol_arr = np.zeros(num_ports)

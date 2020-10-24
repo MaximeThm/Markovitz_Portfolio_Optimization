@@ -10,7 +10,7 @@ Economist Harry Markowitz introduced MPT in a 1952 essay, for which he was later
 
 - list of tickers (from Yahoo Finance) : TSLA, AMZN, AAPL in this example
 - start and end date of the period studied : 2520 days prior from today in the example (e.g. 10 years as a year as an average of 252 trading days)
-- number of visual representation : 1000 in this example
+- number of visual representation : 10000 in this example
 
 # Output of the programm :
 

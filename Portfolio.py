@@ -8,10 +8,10 @@ import datetime
 
 yf.pdr_override()
 
-stocklist = ['AAPL', 'TSLA', 'AMZN','GOOG']
+stocklist = ['TSLA','AMZN','AAPL']
 
 end_date = datetime.date.today()
-start_date = end_date - datetime.timedelta(days=365)
+start_date = end_date - datetime.timedelta(days=1000)
 unused = ['Open', 'High', 'Low', 'Close', 'Volume']
 
 stocks = pd.DataFrame()
@@ -27,7 +27,6 @@ stocks.columns = [stocklist]
 
 log_ret = np.log(stocks/stocks.shift(1))
 
-np.random.seed(42)
 num_ports = 1000
 all_weights = np.zeros((num_ports, len(stocks.columns)))
 ret_arr = np.zeros(num_ports)
@@ -73,23 +72,9 @@ print(opt_results)
 
 print(get_ret_vol_sr(opt_results.x))
 
-frontier_y = np.linspace(0.5,2,200)
-
-def minimize_volatility(weights):
-    return get_ret_vol_sr(weights)[1]
-
-frontier_x = []
-
-for possible_return in frontier_y:
-    cons = ({'type':'eq', 'fun':check_sum},
-            {'type':'eq', 'fun':lambda w: get_ret_vol_sr(w)[0] - possible_return})
-    result = minimize(minimize_volatility, init_guess, method = 'SLSQP', bounds=bounds, constraints=cons)
-    frontier_x.append(result['fun'])
-
 plt.figure(figsize=(12,8))
 plt.scatter(vol_arr, ret_arr, c=sharpe_arr, cmap='viridis')
 plt.colorbar(label='Sharpe Ratio')
 plt.xlabel('Volatility')
 plt.ylabel('Return')
-plt.plot(frontier_x, frontier_y, 'r--', linewidth=3)
 plt.show()
